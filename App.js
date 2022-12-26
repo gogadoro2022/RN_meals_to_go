@@ -6,6 +6,7 @@ import {theme} from './src/infra/theme';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {SafeArea} from './src/components/utility/SafeArea';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const Tab = createBottomTabNavigator();
 const Settings = () => (
@@ -27,16 +28,17 @@ export default function App() {
           <Tab.Navigator
             screenOptions={({route}) => ({
               tabBarIcon: ({color, size}) => {
-                let iconName;
+                // let iconName;
 
-                if (route.name === 'Restaurants') {
-                  iconName = 'fast-food-outline';
-                } else if (route.name === 'Map') {
-                  iconName = 'map-pin';
-                } else if (route.name === 'Settings') {
-                  iconName = 'settings-outline';
-                }
-                return <Ionicons name={iconName} size={size} color={color} />;
+                // if (route.name === 'Restaurants') {
+                //   iconName = 'fast-food-outline';
+                // } else if (route.name === 'Map') {
+                //   iconName = 'map-pin';
+                // } else if (route.name === 'Settings') {
+                //   iconName = 'settings-outline';
+                // }
+                // return <Ionicons name={iconName} size={size} color={color} />;
+                return <Icon name="map-outline" color={color} size={size} />;
               },
             })}>
             <Tab.Screen
