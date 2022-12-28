@@ -43,16 +43,8 @@ const View_SectionEnd = styled(View)`
 `;
 
 export const RestaurantInfoCard = ({restaurant = {}}) => {
-  const {
-    name = 'MacDonald Hambuger',
-    photos = [
-      'https://www.kgnews.co.kr/data/photos/20210207/art_16136995175517_410139.png',
-    ],
-    vicinity = 'majoro street',
-    rating = 4,
-    isOpenNow = true,
-    isClosedTemporarily = true,
-  } = restaurant;
+  const {name, photos, vicinity, rating, isOpenNow, isClosedTemporarily} =
+    restaurant;
 
   const ratingArray = Array.from(new Array(Math.floor(rating)));
   return (

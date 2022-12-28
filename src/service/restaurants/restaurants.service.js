@@ -1,7 +1,7 @@
 import {mockImages, mocks} from './mock';
 import camelize from 'camelize';
 
-export const x[[restaurantsRequest = (location = '37.7749295,-122.4194155') => {
+export const restaurantsRequest = (location = '37.7749295,-122.4194155') => {
   console.log('restaurant request and location :', location);
   return new Promise((resolve, reject) => {
     const rawData = mocks[location];

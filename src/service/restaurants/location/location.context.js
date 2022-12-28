@@ -11,13 +11,13 @@ export const LocationContextProvider = ({children}) => {
   console.log('locationContext 시작');
 
   const onSearch = searchKeyword => {
-    console.log(searchKeyword);
-    setIsLoading(true);
+    console.log('function onSearch(시작은 san francisco):', searchKeyword);
+    // setIsLoading(true);
     setKeyword(searchKeyword);
     locationRequest(keyword)
       .then(result => locationTransform(result))
       .then(result => {
-        console.log('locationTransform success :', result);
+        console.log('function onSearch success and result :', result);
         setIsLoading(false);
         setLocation(result);
       })
@@ -29,6 +29,10 @@ export const LocationContextProvider = ({children}) => {
   };
 
   useEffect(() => {
+    console.log(
+      'location context useEffect and keyword(시작은 san francisco) :',
+      keyword,
+    );
     onSearch(keyword);
   }, []);
 
