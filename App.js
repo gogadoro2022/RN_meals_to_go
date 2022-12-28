@@ -7,6 +7,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {SafeArea} from './src/components/utility/SafeArea';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {restaurantsRequest} from './src/service/restaurants/restaurants.service';
+import {RestaurantsContextProvider} from './src/service/restaurants/restaurants.context';
 
 const Tab = createBottomTabNavigator();
 const Settings = () => (
@@ -20,44 +22,55 @@ const Map = () => (
   </SafeArea>
 );
 
+const TAB_ICON = {
+  Restaurants: 'fast-food-outline',
+  Map: 'map-outline',
+  Settings: 'settings-outline',
+};
+
+// const createNavIcon = ({route}) => {
+//   const iconName = TAB_ICON[route.name];
+
+//   return {
+//     tabBarIcon: ({color, size}) => {
+//       return <Icon name={iconName} color={color} size={size} />;
+//     },
+//   };
+// };
+
 export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <NavigationContainer>
-          <Tab.Navigator
-            screenOptions={({route}) => ({
-              tabBarIcon: ({color, size}) => {
-                // let iconName;
-
-                // if (route.name === 'Restaurants') {
-                //   iconName = 'fast-food-outline';
-                // } else if (route.name === 'Map') {
-                //   iconName = 'map-pin';
-                // } else if (route.name === 'Settings') {
-                //   iconName = 'settings-outline';
-                // }
-                // return <Ionicons name={iconName} size={size} color={color} />;
-                return <Icon name="map-outline" color={color} size={size} />;
-              },
-            })}>
-            <Tab.Screen
-              name="Restaurants"
-              component={RestaurantsScreen}
-              options={{headerShown: false}}
-            />
-            <Tab.Screen
-              name="Map"
-              component={Map}
-              options={{headerShown: false}}
-            />
-            <Tab.Screen
-              name="Settings"
-              component={Settings}
-              options={{headerShown: false}}
-            />
-          </Tab.Navigator>
-        </NavigationContainer>
+        <RestaurantsContextProvider>
+          <NavigationContainer>
+            <Tab.Navigator
+              screenOptions={({route}) => ({
+                tabBarIcon: ({color, size}) => {
+                  const iconName = TAB_ICON[route.name];
+                  return <Icon name={iconName} size={size} color={color} />;
+                },
+                tabBarActiveTintColor: 'black',
+                tabBarInactiveTintColor: 'grey',
+              })}>
+              <Tab.Screen
+                name="Restaurants"
+                component={RestaurantsScreen}
+                options={{headerShown: false}}
+              />
+              <Tab.Screen
+                name="Map"
+                component={Map}
+                options={{headerShown: false}}
+              />
+              <Tab.Screen
+                name="Settings"
+                component={Settings}
+                options={{headerShown: false}}
+              />
+            </Tab.Navigator>
+          </NavigationContainer>
+        </RestaurantsContextProvider>
       </ThemeProvider>
       <StatusBar />
     </>
