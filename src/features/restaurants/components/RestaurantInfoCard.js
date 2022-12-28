@@ -48,7 +48,7 @@ export const RestaurantInfoCard = ({restaurant = {}}) => {
     photos = [
       'https://www.kgnews.co.kr/data/photos/20210207/art_16136995175517_410139.png',
     ],
-    address = 'majoro street',
+    vicinity = 'majoro street',
     rating = 4,
     isOpenNow = true,
     isClosedTemporarily = true,
@@ -76,7 +76,7 @@ export const RestaurantInfoCard = ({restaurant = {}}) => {
           </View>
         </View_SectionEnd>
       </View_Section>
-      <Text_Address>{address}</Text_Address>
+      <Text_Address>{vicinity}</Text_Address>
     </RestaurantCard>
   );
 };
