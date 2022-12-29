@@ -25,7 +25,7 @@ export const LocationContextProvider = ({children}) => {
         setLocation(result);
       })
       .catch(err => {
-        console.log('onSearch useeffect 에러발생');
+        console.log('onSearch useeffect 에러발생 :', eer);
         setIsLoading(false);
         setError(err);
       });

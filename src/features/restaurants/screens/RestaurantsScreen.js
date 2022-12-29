@@ -1,5 +1,9 @@
 import React from 'react';
-import {FlatList, View, ActivityIndicator} from 'react-native';
+import {
+  FlatList,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+} from 'react-native';
 import {RestaurantInfoCard} from '../components/RestaurantInfoCard';
 import {SafeArea} from '../../../components/utility/SafeArea';
 import {useContext} from 'react';
@@ -7,7 +11,7 @@ import {RestaurantsContext} from '../../../service/restaurants/restaurants.conte
 import {Search} from '../components/Search.js';
 import LoadingIndicator from '../../../components/utility/LoadingIndicator';
 
-export const RestaurantsScreen = () => {
+export const RestaurantsScreen = ({navigation}) => {
   const {restaurants, isLoading, error} = useContext(RestaurantsContext);
   console.log('restaurant screen start');
   return (
@@ -17,7 +21,12 @@ export const RestaurantsScreen = () => {
       <FlatList
         data={restaurants}
         renderItem={({item}) => {
-          return <RestaurantInfoCard restaurant={item} />;
+          return (
+            <TouchableOpacity
+              onPress={() => navigation.navigate('RestaurantDetail')}>
+              <RestaurantInfoCard restaurant={item} />
+            </TouchableOpacity>
+          );
         }}
         keyExtractor={item => item.name}
         contentContainerStyle={{padding: 16}}
