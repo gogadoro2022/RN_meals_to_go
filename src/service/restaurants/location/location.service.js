@@ -5,9 +5,10 @@ export const locationRequest = keyword => {
   return new Promise((resolve, reject) => {
     const locationMock = locations[keyword];
     console.log('locationRequest :', locationMock);
+    console.log(' ----> tolowercase :', keyword);
 
     if (!locationMock) {
-      reject(`serach keyword not found`);
+      reject(`location not found`);
     }
     resolve(locationMock);
   });

@@ -4,20 +4,23 @@ import {locationRequest, locationTransform} from './location.service';
 export const LocationContext = createContext();
 
 export const LocationContextProvider = ({children}) => {
-  const [keyword, setKeyword] = useState('san francisco');
+  const [keyword, setKeyword] = useState({});
   const [location, setLocation] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   console.log('locationContext 시작');
 
-  const onSearch = searchKeyword => {
-    console.log('function onSearch(시작은 san francisco):', searchKeyword);
-    // setIsLoading(true);
-    setKeyword(searchKeyword);
-    locationRequest(keyword)
+  const onSearch = inputKeyword => {
+    console.log('onSearch before lowercase:', inputKeyword);
+    setIsLoading(true);
+    if (!inputKeyword.length) {
+      return;
+    }
+    // setKeyword(inputKeyword);
+    locationRequest(inputKeyword.toLowerCase())
       .then(result => locationTransform(result))
       .then(result => {
-        console.log('function onSearch success and result :', result);
+        console.log('onSearch then result :', result);
         setIsLoading(false);
         setLocation(result);
       })

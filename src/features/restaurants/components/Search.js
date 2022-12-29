@@ -9,12 +9,21 @@ const SearchContainer = styled(View)`
 `;
 
 export const Search = () => {
-  const {keyword} = useContext(LocationContext);
-  const [searchKeyword, setSearchKeyword] = useState(keyword);
-  console.log('serach bar start and serch keyword :', searchKeyword);
+  const {search} = useContext(LocationContext);
+  const [searchKeyword, setSearchKeyword] = useState({});
+  console.log('serachBar and serachKeyword :', searchKeyword);
   return (
     <SearchContainer>
-      <Searchbar placeholder="장소를 입력하세요" />
+      <Searchbar
+        placeholder="search"
+        value={searchKeyword}
+        onChangeText={text => {
+          setSearchKeyword(text);
+        }}
+        onSubmitEditing={() => {
+          search(searchKeyword);
+        }}
+      />
     </SearchContainer>
   );
 };

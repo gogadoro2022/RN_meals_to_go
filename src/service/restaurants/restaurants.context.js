@@ -8,15 +8,17 @@ export const RestaurantsContextProvider = ({children}) => {
   const [restaurants, setRestaurants] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const locationContext = useContext(LocationContext);
-  console.log('restaurant context location context :', locationContext);
+  const {location} = useContext(LocationContext);
+  // location = lat, lng
 
-  const getRestaurants = () => {
+  console.log('restaurant context and location :');
+
+  const getRestaurants = location => {
     setIsLoading(true);
     console.log('function getRestaurants 응답은 2초 시간걸림');
     setTimeout(() => {
       console.log('2sec complete');
-      restaurantsRequest()
+      restaurantsRequest(location)
         .then(restaurantsTransform)
         .then(results => {
           console.log(
@@ -36,8 +38,8 @@ export const RestaurantsContextProvider = ({children}) => {
 
   useEffect(() => {
     console.log('restaurants context useEffect');
-    getRestaurants();
-  }, []);
+    getRestaurants(location);
+  }, [location]);
 
   return (
     <RestaurantsContext.Provider
