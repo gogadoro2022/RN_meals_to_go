@@ -1,18 +1,19 @@
 import React from 'react';
-import {Text} from 'react-native';
+import {Text, View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {SafeArea} from '../../../components/utility/SafeArea';
 import {RestaurantsNavigator} from './RestaurantsNav';
 import {MapScreen} from '../../../features/map/screen/MapScreen';
+import {Favourites} from '../../../components/favourites/favourites.component';
 
+const Temporary = () => {
+  <View>
+    <Text>nothing</Text>
+  </View>;
+};
 const Tab = createBottomTabNavigator();
-const Settings = () => (
-  <SafeArea>
-    <Text>Settings</Text>
-  </SafeArea>
-);
 
 const TAB_ICON = {
   Restaurants: 'fast-food-outline',
@@ -44,7 +45,7 @@ export const AppNavigator = () => {
         />
         <Tab.Screen
           name="Settings"
-          component={Settings}
+          component={Temporary}
           options={{headerShown: false}}
         />
       </Tab.Navigator>

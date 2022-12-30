@@ -5,7 +5,7 @@ import {theme} from './src/infra/theme';
 import {RestaurantsContextProvider} from './src/service/restaurants/restaurants.context';
 import {LocationContextProvider} from './src/service/restaurants/location/location.context';
 import {Navigation} from './src/infra/theme/navigation';
-import {Text} from 'react-native';
+import {FavouritesContextProvider} from './src/service/favourites/favourites.context';
 
 // const createNavIcon = ({route}) => {
 //   const iconName = TAB_ICON[route.name];
@@ -21,11 +21,13 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <LocationContextProvider>
-          <RestaurantsContextProvider>
-            <Navigation />
-          </RestaurantsContextProvider>
-        </LocationContextProvider>
+        <FavouritesContextProvider>
+          <LocationContextProvider>
+            <RestaurantsContextProvider>
+              <Navigation />
+            </RestaurantsContextProvider>
+          </LocationContextProvider>
+        </FavouritesContextProvider>
       </ThemeProvider>
       <StatusBar />
     </>

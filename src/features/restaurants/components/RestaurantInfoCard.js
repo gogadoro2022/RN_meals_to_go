@@ -5,6 +5,10 @@ import star from '../../../../assets/star';
 import open from '../../../../assets/open';
 import styled from 'styled-components';
 import {Card} from 'react-native-paper';
+import {
+  Favourite,
+  Favourites,
+} from '../../../components/favourites/favourites.component';
 
 const RestaurantCard = styled(Card)`
   background-color: ${props => props.theme.colors.bg.primary};
@@ -49,6 +53,7 @@ export const RestaurantInfoCard = ({restaurant = {}}) => {
   const ratingArray = Array.from(new Array(Math.floor(rating)));
   return (
     <RestaurantCard elevation={5}>
+      <Favourite restaurant={restaurant} />
       <RestaurantCardCover key={name} source={{uri: photos[0]}} />
       <Text_Title>{name}</Text_Title>
       <View_Section>
