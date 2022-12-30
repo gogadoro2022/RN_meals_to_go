@@ -6,17 +6,20 @@ import {LocationContext} from '../../../service/restaurants/location/location.co
 
 const SearchContainer = styled(View)`
   padding: ${props => props.theme.space[3]};
+  position: absolute;
+  z-index: 999;
+  top: 47px;
+  width: 100%;
 `;
 
-export const Search = () => {
+export const MapSearch = () => {
   const {search, keyword} = useContext(LocationContext);
-  const [searchKeyword, setSearchKeyword] = useState({});
-  console.log('serachBar and serachKeyword :', searchKeyword);
-
+  const [searchKeyword, setSearchKeyword] = useState({keyword});
   useEffect(() => {
     setSearchKeyword(keyword);
   }, [keyword]);
 
+  console.log('serachBar and serachKeyword :', searchKeyword);
   return (
     <SearchContainer>
       <Searchbar
