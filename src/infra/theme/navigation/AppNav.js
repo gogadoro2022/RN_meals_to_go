@@ -3,10 +3,8 @@ import {Text, View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {SafeArea} from '../../../components/utility/SafeArea';
 import {RestaurantsNavigator} from './RestaurantsNav';
 import {MapScreen} from '../../../features/map/screen/MapScreen';
-import {Favourites} from '../../../components/favourites/favourites.component';
 
 const Temporary = () => {
   <View>

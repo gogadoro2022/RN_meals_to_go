@@ -13,7 +13,6 @@ import LoadingIndicator from '../../../components/utility/LoadingIndicator';
 
 export const RestaurantsScreen = ({navigation}) => {
   const {restaurants, isLoading, error} = useContext(RestaurantsContext);
-  console.log('restaurant screen start');
   return (
     <SafeArea>
       {isLoading && <LoadingIndicator />}

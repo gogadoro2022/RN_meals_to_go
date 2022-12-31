@@ -1,37 +1,35 @@
+import React, {useContext} from 'react';
 import {TouchableOpacity} from 'react-native';
 import styled from 'styled-components';
 import Icon from 'react-native-vector-icons/AntDesign';
-import {useContext} from 'react';
 import {FavouritesContext} from '../../service/favourites/favourites.context';
 
-const FavouritesBtn = styled(TouchableOpacity)`
+const FavouriteBtn = styled(TouchableOpacity)`
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top: 25px;
+  right: 25px;
   z-index: 9;
 `;
 
-const {addToFavourites, removeFromFavourites, favourites} =
-  useContext(FavouritesContext);
-
 export const Favourite = ({restaurant}) => {
-  // const isFavourites = likes.find(r => {
-  //   r.placeId === restaurant.placeId;
-  // });
+  const {addToFavourites, removeFromFavourites, favourites} =
+    useContext(FavouritesContext);
+
+  const isFavourites = favourites.find(r => r.placeId === restaurant.placeId);
 
   return (
-    <FavouritesBtn
-      onPress={() =>
-        // isFavourites
-        // ? removeFromFavourites(restaurant)
-        addToFavourites(restaurant)
-      }>
+    <FavouriteBtn
+      onPress={() => {
+        console.log(!isFavourites);
+        !isFavourites
+          ? addToFavourites(restaurant)
+          : removeFromFavourites(restaurant);
+      }}>
       <Icon
-        // name={isFavourites ? 'heart' : 'hearto'}
-        name="hearto"
-        size={25}
-        color="white"
+        name={isFavourites ? 'heart' : 'hearto'}
+        size={24}
+        color={isFavourites ? 'red' : 'white'}
       />
-    </FavouritesBtn>
+    </FavouriteBtn>
   );
 };
